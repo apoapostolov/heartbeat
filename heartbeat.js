@@ -507,17 +507,20 @@ function isActorTypeAllowed(actor) {
     // Check if the actor's type is in the allowed list
     return allowedActorTypes.includes(actor.type.toLowerCase());
 }
-function disableHeartBeat(){
-	
-	console.log("Heatbeat | Overlay disabled");
-	document.getElementById("heartbeat").style.opacity = 0;
-	$("#board")[0].style.filter = '';
-	if(!game.settings.get('heartbeat', 'enabledForThisUser'))
-		changeHeartBeatButtton('off');
-	game.audio.playing.forEach(function(sound) {
-		if(sound.src == game.settings.get('heartbeat', 'sfx_heartbeat'))sound.stop()
-			
-	});
+
+function disableHeartBeat() {
+    console.log("Heartbeat | Overlay disabled");
+    document.getElementById("heartbeat").style.opacity = 0;
+    $("#board")[0].style.filter = '';
+    
+    if (!game.settings.get('heartbeat', 'enabledForThisUser')) {
+        changeHeartBeatButtton('off');
+    }
+
+    const soundsrc = game.settings.get('heartbeat', 'sfx_heartbeat');
+    game.audio.playing.forEach(function(sound) {
+        if (sound.src.endsWith(soundsrc)) sound.stop();
+    });
 }
 
 async function damage(percent, dhp = null, maxHp) {
@@ -579,9 +582,17 @@ function deep_value(obj, path) {
     }, obj);
 }
 
-function HB_play(src, volume, loop=false) {
-  const helper = (globalThis.AudioHelper ?? (foundry?.audio?.AudioHelper));
-  if (helper?.play) helper.play({ src, volume, autoplay: true, loop }, false);
+function HB_play(src, volume, loop = false) {
+    const helper = foundry?.audio?.AudioHelper || AudioHelper;
+    if (!helper?.play || !src) return;
+    
+    const soundPath = src.startsWith('/') ? src : `/${src}`;
+    helper.play({ 
+        src: soundPath, 
+        volume: parseFloat(volume), 
+        loop: loop, 
+        autoplay: true 
+    }, false);
 }
 
 function setheartbeat(damageTaken = null, token = null, source = null){
@@ -680,17 +691,19 @@ function setheartbeat(damageTaken = null, token = null, source = null){
 		}
 		//play sound if low on health
 		let soundsrc = game.settings.get('heartbeat', 'sfx_heartbeat');
-		if(percent >= game.settings.get('heartbeat', 'heartbeat_offset')/100 && percent != 1){//play sound
+		if (percent <= game.settings.get('heartbeat', 'heartbeat_offset') / 100 && percent != 0) {
 			let alreadyplaying = false;
+			
 			game.audio.playing.forEach(function(sound) {
-			if(sound.src == game.settings.get('heartbeat', 'sfx_heartbeat')) alreadyplaying = true;
+				if (sound.src.endsWith(soundsrc)) alreadyplaying = true;
 			});
-			if(!alreadyplaying)
+
+			if (!alreadyplaying) {
 				HB_play(soundsrc, game.settings.get('heartbeat', 'sfx_heartbeat_vol'), true);
-		}
-		else{
+			}
+		} else {
 			game.audio.playing.forEach(function(sound) {
-				if(sound.src == game.settings.get('heartbeat', 'sfx_heartbeat'))sound.stop()
+				if (sound.src.endsWith(soundsrc)) sound.stop();
 			});
 		}
 		//unconscious
