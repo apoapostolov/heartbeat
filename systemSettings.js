@@ -62,12 +62,6 @@ export const systemPresets = {
         "hpPath": "system.hp.value",
         "maxHpPath": "system.hp.max",
         "allowedActorTypes": ["character", "monster"]
-    },
-    "ose-dev": {
-        "name": "Old-School Essentials (Development)",
-        "hpPath": "system.hp.value",
-        "maxHpPath": "system.hp.max",
-        "allowedActorTypes": ["character", "monster"]
     }
 };
 
