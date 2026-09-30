@@ -1,31 +1,40 @@
-<b>SUPPORT: https://discord.gg/gs5hAgxBx3</b></br>
-Make hp changes exiting and immersive!
+# Heartbeat
 
-Adds a video game like overlay when your character gets hurt and makes taking damage more dramatic and fun for your players!
-You can preview the module as a GM without logging in as a player :D
+*When a character is nearly done for, let the player feel it before anyone
+reads the number aloud.*
 
-Features:<br>
-- Damage overlay, red overlay that gets more visible as health goes down.<br>
-- Damage feedback, red or green flash that disappears quickly when you lose or restore health<br>
-- Heartbeat animation and sound when players reach a certain health percentage<br>
-- Massive damage sound that will be played when players lose 50% health in one instance.<br>
+Heartbeat adds on-screen and audio cues as a character loses or regains HP.
+Damage can flash red, healing can flash green, and low health can bring in a
+heartbeat and a heavier screen overlay. GMs can preview the effect by
+selecting a token without joining as a player.
 
-This module is system agnostic and very customizable!
+![Heartbeat effect during play](https://i.imgur.com/CmFBFsw.gif)
 
-Customize at whish percentages the effects start<br>
-- Custom Sounds<br>
-- Custom Overlay<br>
-- Configure how strong the effects are<br>
-- Disable any effects you dislike<br>
-- This module is not available in the module browser until the end of the month.
-<br>
+## What it does
 
-<h1>Images and Gifs:</h1>
-<div>
-Demonstration:
-https://imgur.com/CmFBFsw.gif
-Low HP:<br>
-https://imgur.com/5UNkbSl.gif
-Player_Death<br>
-https://imgur.com/erUkfZP.gif
+- **Make a hit visible.** A brief flash responds to damage or healing. The
+  persistent damage overlay becomes stronger as health falls.
+- **Signal danger.** A heartbeat sound and animation can begin at a chosen
+  HP percentage. A large single hit can play a separate sound.
+- **Fit the table.** Set thresholds and effect strength, choose your own
+  sounds or overlay, and turn off effects you do not want.
+- **Preview as GM.** Test the look on selected tokens before players need to
+  see it.
 
+![Low-health effect](https://i.imgur.com/5UNkbSl.gif)
+
+## Installation and status
+
+This repository is Apo's source fork of
+[Handyfon's Heartbeat](https://github.com/Handyfon/heartbeat). It has no
+published GitHub Release of its own. Its manifest points to Handyfon's
+package; installing that URL gets the upstream build, not this fork.
+
+The checked-in source version is **13.3.3**, with Foundry compatibility
+declared from v11 through verified v13. Review the manifest and the version
+of Foundry you run before installing a source checkout.
+
+## Credits
+
+Heartbeat was created by Handyfon. The checked-in manifest and original
+project links remain under Handyfon's name.
