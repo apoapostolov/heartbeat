@@ -1,7 +1,16 @@
-# Heartbeat
+<div align="center">
 
-*When a character is nearly done for, let the player feel it before anyone
-reads the number aloud.*
+  <h1>Heartbeat</h1>
+
+  <p>Give every hit a pulse with a damage overlay, impact flashes, and heartbeat cues.</p>
+
+  <p>
+    <a href="https://github.com/apoapostolov/heartbeat"><img src="https://img.shields.io/badge/Type-Foundry%20module-555" alt="Type: Foundry module"></a>
+    <a href="https://github.com/apoapostolov/heartbeat"><img src="https://img.shields.io/badge/Language-JavaScript-555" alt="Primary language: JavaScript"></a>
+    <a href="https://github.com/apoapostolov/heartbeat/releases"><img src="https://img.shields.io/badge/Status-Unreleased-555" alt="Unreleased"></a>
+  </p>
+
+</div>
 
 Heartbeat adds on-screen and audio cues as a character loses or regains HP.
 Damage can flash red, healing can flash green, and low health can bring in a
